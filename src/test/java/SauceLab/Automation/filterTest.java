@@ -16,6 +16,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import PageObjectModel.LoginPage;
@@ -32,8 +33,9 @@ public class filterTest extends SeleniumConfig {
 	
 	
 	@BeforeTest
-	public void browserInitialize() throws IOException, InterruptedException {
-		driver = initializer();
+	@Parameters("browser")
+	public void browserInitialize(String browser) throws IOException, InterruptedException {
+		driver = initializer(browser);
 		baseURL = readData.readExcel("B2");
 		homePage = readData.readExcel("B3");
 		login = new LoginPage(driver);
